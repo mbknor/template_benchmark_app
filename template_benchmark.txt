@@ -1,0 +1,216 @@
+testing
+
+command
+../play/play run --%prod -XX:CompileThreshold=10
+
+timeing benchmarks: first run ab once, then run it and record times.
+when recording memory we record during the first ab run.
+---------------------------
+ab -k -c 40 -n 14000 http://localhost:9000/application/noTemplate
+
+1.2.4-rc2:
+Time taken for tests:   1.783 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      4942706 bytes
+HTML transferred:       28004 bytes
+Requests per second:    7851.25 [#/sec] (mean)
+Time per request:       5.095 [ms] (mean)
+Time per request:       0.127 [ms] (mean, across all concurrent requests)
+Transfer rate:          2706.92 [Kbytes/sec] received
+
+new:
+Time taken for tests:   1.752 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      5002284 bytes
+HTML transferred:       28024 bytes
+Requests per second:    7990.69 [#/sec] (mean)
+Time per request:       5.006 [ms] (mean)
+Time per request:       0.125 [ms] (mean, across all concurrent requests)
+Transfer rate:          2788.21 [Kbytes/sec] received
+
+-----------------------------------
+ab -k -c 40 -n 14000 http://localhost:9000/application/minimalTemplate
+
+1.2.4-rc2:
+Time taken for tests:   2.145 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      4928000 bytes
+HTML transferred:       28000 bytes
+Requests per second:    6526.09 [#/sec] (mean)
+Time per request:       6.129 [ms] (mean)
+Time per request:       0.153 [ms] (mean, across all concurrent requests)
+Transfer rate:          2243.34 [Kbytes/sec] received
+
+new:
+Time taken for tests:   1.960 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      4990052 bytes
+HTML transferred:       28034 bytes
+Requests per second:    7141.84 [#/sec] (mean)
+Time per request:       5.601 [ms] (mean)
+Time per request:       0.140 [ms] (mean, across all concurrent requests)
+Transfer rate:          2485.92 [Kbytes/sec] received
+
+----------------------------------------
+ab -k -c 40 -n 14000 http://localhost:9000/application/normalTemplate
+
+1.2.4-rc2:
+Time taken for tests:   8.359 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      92582000 bytes
+HTML transferred:       87640000 bytes
+Requests per second:    1674.75 [#/sec] (mean)
+Time per request:       23.884 [ms] (mean)
+Time per request:       0.597 [ms] (mean, across all concurrent requests)
+Transfer rate:          10815.54 [Kbytes/sec] received
+
+new:
+Time taken for tests:   4.998 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      93464000 bytes
+HTML transferred:       88466000 bytes
+Requests per second:    2801.09 [#/sec] (mean)
+Time per request:       14.280 [ms] (mean)
+Time per request:       0.357 [ms] (mean, across all concurrent requests)
+Transfer rate:          18261.79 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.7      0      13
+Processing:     2   14   4.7     13      56
+Waiting:        2   13   4.7     12      55
+Total:          3   14   4.6     13      56
+
+----------------------------------------
+ab -k -c 40 -n 14000 http://localhost:9000/application/normalTemplateBigData
+
+1.2.4-rc2:
+Time taken for tests:   43.221 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      783706000 bytes
+HTML transferred:       778750000 bytes
+Requests per second:    323.92 [#/sec] (mean)
+Time per request:       123.487 [ms] (mean)
+Time per request:       3.087 [ms] (mean, across all concurrent requests)
+Transfer rate:          17707.74 [Kbytes/sec] received
+
+new:
+Time taken for tests:   26.687 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      790888000 bytes
+HTML transferred:       785876000 bytes
+Requests per second:    524.61 [#/sec] (mean)
+Time per request:       76.247 [ms] (mean)
+Time per request:       1.906 [ms] (mean, across all concurrent requests)
+Transfer rate:          28941.65 [Kbytes/sec] received
+
+-------------------------------------------------------
+ab -k -c 40 -n 14000 http://localhost:9000/application/normalTemplateBigDataWithJavaExtensions
+
+1.2.4-RC2:
+Time taken for tests:   48.119 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      789306000 bytes
+HTML transferred:       784350000 bytes
+Requests per second:    290.95 [#/sec] (mean)
+Time per request:       137.483 [ms] (mean)
+Time per request:       3.437 [ms] (mean, across all concurrent requests)
+Transfer rate:          16018.74 [Kbytes/sec] received
+
+new:
+Time taken for tests:   32.216 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      796488000 bytes
+HTML transferred:       791476000 bytes
+Requests per second:    434.57 [#/sec] (mean)
+Time per request:       92.044 [ms] (mean)
+Time per request:       2.301 [ms] (mean, across all concurrent requests)
+Transfer rate:          24144.24 [Kbytes/sec] received
+
+------------------------------------------------------
+ab -k -c 40 -n 14000 http://localhost:9000/application/normalTemplateBigDataInTag
+
+1.2.4-RC2:
+Time taken for tests:   45.019 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      1764000000 bytes
+HTML transferred:       1759030000 bytes
+Requests per second:    310.98 [#/sec] (mean)
+Time per request:       128.625 [ms] (mean)
+Time per request:       3.216 [ms] (mean, across all concurrent requests)
+Transfer rate:          38265.36 [Kbytes/sec] received
+
+new:
+Time taken for tests:   30.410 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      1766982000 bytes
+HTML transferred:       1761956000 bytes
+Requests per second:    460.38 [#/sec] (mean)
+Time per request:       86.885 [ms] (mean)
+Time per request:       2.172 [ms] (mean, across all concurrent requests)
+Transfer rate:          56743.72 [Kbytes/sec] received
+
+ab -k -c 40 -n 14000 http://localhost:9000/application/normalTemplateBiggerData
+
+
+1.2.4-RC2:
+Time taken for tests:   389.815 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      7745220000 bytes
+HTML transferred:       7740250000 bytes
+Requests per second:    35.91 [#/sec] (mean)
+Time per request:       1113.756 [ms] (mean)
+Time per request:       27.844 [ms] (mean, across all concurrent requests)
+Transfer rate:          19403.30 [Kbytes/sec] received
+
+new:
+Time taken for tests:   247.561 seconds
+Complete requests:      14000
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    0
+Total transferred:      7815402000 bytes
+HTML transferred:       7810376000 bytes
+Requests per second:    56.55 [#/sec] (mean)
+Time per request:       707.318 [ms] (mean)
+Time per request:       17.683 [ms] (mean, across all concurrent requests)
+Transfer rate:          30829.66 [Kbytes/sec] received
